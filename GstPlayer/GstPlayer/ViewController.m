@@ -77,8 +77,29 @@
         [entries addObjectsFromArray:[[NSBundle mainBundle] pathsForResourcesOfType:t inDirectory:@"."]];
     }
     self->mediaEntries = entries;
-    self->onlineEntries = [NSArray arrayWithObjects:@"http://docs.gstreamer.com/media/sintel_trailer-368p.ogv",
-                           @"http://download.blender.org/peach/bigbuckbunny_movies/BigBuckBunny_640x360.m4v", nil];
+    self->onlineEntries = [[NSArray arrayWithObjects:@"http://docs.gstreamer.com/media/sintel_trailer-368p.ogv",
+                            @"http://download.blender.org/peach/bigbuckbunny_movies/BigBuckBunny_640x360.m4v", nil] retain];
+    self->assetEntries = [[NSMutableArray alloc] init];
+    library = [[ALAssetsLibrary alloc] init];
+    [library enumerateGroupsWithTypes:ALAssetsGroupAll
+                           usingBlock:^(ALAssetsGroup *group, BOOL *stop) {
+                               if (group) {
+                                   [group enumerateAssetsUsingBlock:^(ALAsset *result, NSUInteger index, BOOL *stop) {
+                                       if(result) {
+                                           [assetEntries addObject:result];
+                                           *stop = NO;
+                                           
+                                       }
+                                   }];
+                               } else {
+                                   [self.collectionView reloadData];
+                               }
+                           }
+                         failureBlock:^(NSError *error) {
+                             // handle error
+                             NSLog(@"ERROR");
+                         }];
+
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
@@ -87,13 +108,15 @@
             return [self->mediaEntries count];
         case 1:
             return [self->onlineEntries count];
+        case 2:
+            return [self->assetEntries count];
         default:
             return 0;
     }
 }
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
-    return 2;
+    return 3;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -104,7 +127,11 @@
         newCell.label.text = [NSString stringWithFormat:@"file://%@",
                               [self->mediaEntries objectAtIndex:indexPath.item], nil];
     } else if (indexPath.section == 1) {
-        newCell.label.text = [self->onlineEntries objectAtIndex:indexPath.item];
+        newCell.label.text = [NSString stringWithFormat:@"%@", [self->onlineEntries objectAtIndex:indexPath.item], nil];
+    } else if (indexPath.section == 2) {
+        ALAsset* asset = [self->assetEntries objectAtIndex:indexPath.item];
+        NSURL *url = [asset valueForProperty:ALAssetPropertyAssetURL];
+        newCell.label.text = [url absoluteString];
     }
 
     return newCell;

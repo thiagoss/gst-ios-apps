@@ -25,6 +25,7 @@
 		6322F37C171DA7AA003BEA22 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6322F377171DA7AA003BEA22 /* ViewController.m */; };
 		6322F381171DA7B4003BEA22 /* MovieEntryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6322F37E171DA7B4003BEA22 /* MovieEntryCell.m */; };
 		6322F382171DA7B4003BEA22 /* PlaybackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6322F380171DA7B4003BEA22 /* PlaybackViewController.m */; };
+		752066CD172F543200285763 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 752066CC172F543200285763 /* AssetsLibrary.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,6 +57,7 @@
 		6322F37E171DA7B4003BEA22 /* MovieEntryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MovieEntryCell.m; sourceTree = "<group>"; };
 		6322F37F171DA7B4003BEA22 /* PlaybackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaybackViewController.h; sourceTree = "<group>"; };
 		6322F380171DA7B4003BEA22 /* PlaybackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaybackViewController.m; sourceTree = "<group>"; };
+		752066CC172F543200285763 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +65,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				752066CD172F543200285763 /* AssetsLibrary.framework in Frameworks */,
 				6322F33A171DA6B9003BEA22 /* UIKit.framework in Frameworks */,
 				6322F33C171DA6B9003BEA22 /* Foundation.framework in Frameworks */,
 				6322F33E171DA6B9003BEA22 /* CoreGraphics.framework in Frameworks */,
@@ -93,6 +96,7 @@
 		6322F338171DA6B9003BEA22 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				752066CC172F543200285763 /* AssetsLibrary.framework */,
 				6322F339171DA6B9003BEA22 /* UIKit.framework */,
 				6322F33B171DA6B9003BEA22 /* Foundation.framework */,
 				6322F33D171DA6B9003BEA22 /* CoreGraphics.framework */,

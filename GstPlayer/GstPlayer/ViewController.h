@@ -43,11 +43,15 @@
  */
 
 #import <UIKit/UIKit.h>
+#import <AssetsLibrary/AssetsLibrary.h>
 
 @interface ViewController : UIViewController <UICollectionViewDataSource> {
     IBOutlet UICollectionView *collectionView;
     NSArray *mediaEntries;
     NSArray *onlineEntries;
+    NSMutableArray *assetEntries;
+    
+    ALAssetsLibrary *library;
 }
 
 @property (retain,nonatomic) UICollectionView *collectionView;
